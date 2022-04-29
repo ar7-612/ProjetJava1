@@ -68,5 +68,4 @@ public class Plateau {
             joueur = 1;
         }
     }
-
 }
