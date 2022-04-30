@@ -2,10 +2,16 @@ package Sources.Modele;
 
 import java.awt.event.*;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import Vue.Vuejeu;
+
 public class AdapteurSouris extends MouseAdapter {
     Plateau plat;
     Vuejeu vueJeu;
     int souries;
+    JFrame frame;
 
     public AdapteurSouris(Plateau p, Vuejeu vplat) {
         plat = p;
@@ -16,7 +22,7 @@ public class AdapteurSouris extends MouseAdapter {
     @Override
     public void mousePressed(MouseEvent e) {
         if (plat.fini()) {
-            System.out.println("Le plat est fini, J" + plat.quiJoue() + " a gagné !");
+            JOptionPane.showMessageDialog(frame, "Joueur " + plat.quiJoue() + " a gagné!", "Partie terminée", 1);
             return;
         }
         int colonne = e.getX() / vueJeu.largeurCase();
@@ -27,7 +33,10 @@ public class AdapteurSouris extends MouseAdapter {
             plat.Jouercoup(ligne, colonne);
             plat.changeJoueur();
             vueJeu.repaint();
-
+            if (plat.fini()) {
+                JOptionPane.showMessageDialog(frame, "Joueur " + plat.quiJoue() + " a gagné!", "Partie terminée", 1);
+                return;
+            }
         }
     }
 }
