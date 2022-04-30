@@ -4,7 +4,7 @@ import java.awt.Component;
 
 import javax.swing.*;
 
-import Vue.Vuejeu;
+import Sources.Vue.Vuejeu;
 
 public class InterfaceGraphique {
     Plateau plateau;

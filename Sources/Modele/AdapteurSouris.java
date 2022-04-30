@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import Vue.Vuejeu;
+import Sources.Vue.Vuejeu;
 
 public class AdapteurSouris extends MouseAdapter {
     Plateau plat;
