@@ -13,7 +13,7 @@ public class InterfaceGraphique {
 
     public void demarre(JFrame fenetreDuJeu, int nbLignes, int nbColonnes) {
 
-        plateau = new Plateau(10, 10);
+        plateau = new Plateau(20, 20);
         vueJeu = new Vuejeu(plateau);
         vueJeu.addMouseListener(new AdapteurSouris(plateau, vueJeu));
         f = fenetreDuJeu;

@@ -13,7 +13,8 @@ public class Vuejeu extends JComponent {
     Graphics2D drawable;
     int largeur;
     int hauteur;
-    Imagegaufre gaufreM, gaufreCroqueCoin, gaufreCroqueCoinExt, gaufreCroqueCoteBas, gaufreCroqueCoteDroit, poison;
+    Imagegaufre gaufreM, gaufreBD, gaufreHD, gaufreBG, gaufreHG, gaufreCroqueCoin, gaufreCroqueCoinExt,
+            gaufreCroqueCoteBas, gaufreCroqueCoteDroit, poison;
     Plateau plat;
     int largeurCase;
     int hauteurCase;
@@ -25,6 +26,10 @@ public class Vuejeu extends JComponent {
         gaufreCroqueCoinExt = chargeImage("gaufreCroqueCoinExt");
         gaufreCroqueCoteBas = chargeImage("gaufreCroqueCoteBas");
         gaufreCroqueCoteDroit = chargeImage("gaufreCroqueCoteDroit");
+        gaufreBD = chargeImage("gaufreBD");
+        gaufreBG = chargeImage("gaufreBG");
+        gaufreHD = chargeImage("gaufreHD");
+        gaufreHG = chargeImage("gaufreHG");
         poison = chargeImage("poison");
         plat = p;
     }
@@ -64,11 +69,22 @@ public class Vuejeu extends JComponent {
             for (j = 0; j < plat.lignes(); j++) {
                 y = j * hauteurCase;
                 if (plat.contenu(j, i) == 2) {
-                    tracerImage(gaufreM, x, y, largeurCase, hauteurCase);
+                    tracerImage(gaufreHG, x, y, largeurCase, hauteurCase);
                     tracerImage(poison, x, y, largeurCase, hauteurCase);
                 } else if (plat.contenu(j, i) == 0) {
-                    tracerImage(gaufreM, x, y, largeurCase, hauteurCase);
+                    if (j == 0 && i == plat.colonnes() - 1) {
+                        tracerImage(gaufreHD, x, y, largeurCase, hauteurCase);
+                    } else if (j == plat.lignes() - 1 && i == 0) {
+                        tracerImage(gaufreBG, x, y, largeurCase, hauteurCase);
+                    } else if (j == plat.lignes() - 1 && i == plat.colonnes() - 1) {
+                        tracerImage(gaufreBD, x, y, largeurCase, hauteurCase);
+                    } else {
+                        tracerImage(gaufreM, x, y, largeurCase, hauteurCase);
+                    }
                 } else if (plat.contenu(j, i) == 1) {
+                    if (i != 0 && j != 0 && plat.contenu(j - 1, i - 1) != 1 && plat.contenu(j, i + 1) == 1
+                            && plat.contenu(j + 1, i) == 1)
+                        tracerImage(gaufreCroqueCoinExt, x, y, largeurCase, hauteurCase);
                     if (i != 0 && j != 0 && plat.contenu(j, i - 1) != 1 && plat.contenu(j, i + 1) == 1)
                         tracerImage(gaufreCroqueCoteBas, x, y, largeurCase, hauteurCase);
                     if (i != 0 && j != 0 && plat.contenu(j - 1, i) != 1 && plat.contenu(j + 1, i) == 1)
