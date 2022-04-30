@@ -1,9 +1,13 @@
-package Sources;
+package Sources.Vue;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+
+import Sources.Testmain;
+import Sources.Modele.InterfaceGraphique;
+import Sources.Modele.Plateau;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,11 +21,16 @@ import javax.swing.JOptionPane;
  */
 public class BtnMenuListener implements ActionListener {
     JMenuItem item;
-    Testmain window;
+    Plateau plat;
+    Vuejeu vj;
 
-    public BtnMenuListener(JMenuItem item, Testmain m) {
+    public BtnMenuListener(JMenuItem item, Plateau jeu, Vuejeu vjeu) {
         this.item = item;
-        window = m;
+        plat = jeu;
+        vj = vjeu;
+    }
+
+    public BtnMenuListener(JMenuItem newGame, InterfaceGraphique interfaceGraphique) {
     }
 
     @Override
@@ -32,7 +41,8 @@ public class BtnMenuListener implements ActionListener {
                 // traitement
                 break;
             case "Nouvelle Partie":
-                // traitement
+                plat.NouveauPlateau(plat.lignes(), plat.colonnes());
+                vj.repaint();
                 break;
             case "Sauvegarder":
                 // traitement

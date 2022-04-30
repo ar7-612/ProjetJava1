@@ -9,7 +9,7 @@ public class Plateau {
     int joueur = 1;
     boolean fini;
 
-    Plateau(int nbl, int nbc) {
+    public Plateau(int nbl, int nbc) {
         plateau = new int[nbl][nbc];
         nombredeligne = nbl;
         positioncoup = new Point(-1, -1);
@@ -78,6 +78,11 @@ public class Plateau {
         } else {
             joueur = 1;
         }
+    }
+
+    public void NouveauPlateau(int lignes, int colonnes) {
+        plateau = new int[lignes][colonnes];
+        initialiseplat();
     }
 
 }
