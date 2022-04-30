@@ -58,9 +58,6 @@ public class Vuejeu extends JComponent {
         largeurCase = largeur / plat.colonnes();
         hauteurCase = hauteur / plat.lignes();
 
-        largeurCase = Math.min(largeurCase, hauteurCase);
-        hauteurCase = largeurCase;
-
         int i, j;
         int x = 0;
         int y = 0;
