@@ -1,4 +1,5 @@
-package Modele
+package Sources.Modele;
+
 public class Historique () {
 
 }

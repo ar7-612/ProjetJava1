@@ -1,14 +1,18 @@
 package Sources.Modele;
 
+import java.awt.*;
+
 public class Plateau {
+    Point positioncoup;
     int[][] plateau;
     int nombredeligne, nombredecolonne;
     int joueur = 1;
     boolean fini;
 
-    Plateau(int nbl, int nbc) {
+    public Plateau(int nbl, int nbc) {
         plateau = new int[nbl][nbc];
         nombredeligne = nbl;
+        positioncoup = new Point(-1, -1);
         nombredecolonne = nbc;
         initialiseplat();
     }
@@ -18,6 +22,7 @@ public class Plateau {
     }
 
     boolean Jouercoup(int ligne, int colonne) {
+        positioncoup = new Point(ligne, colonne);
         boolean possible = false;
         for (int l = 0; l < nombredeligne; l++) {
             for (int c = 0; c < nombredecolonne; c++) {
@@ -32,7 +37,13 @@ public class Plateau {
         return possible;
     }
 
-    int contenu(int l, int c) {
+    public Point positioncoup() {
+        return positioncoup;
+    }
+
+    public int contenu(int l, int c) {
+        if (l > nombredeligne - 1 || c > nombredecolonne - 1)
+            return 1;
         return plateau[l][c];
     }
 
@@ -48,7 +59,7 @@ public class Plateau {
         boolean finis = true;
         for (int l = 0; l < nombredeligne; l++) {
             for (int c = 0; c < nombredecolonne; c++) {
-                if (plateau[l][c] == 0) {
+                if (plateau[l][c] != 1) {
 
                     finis = false;
                 }
@@ -68,4 +79,10 @@ public class Plateau {
             joueur = 1;
         }
     }
+
+    public void NouveauPlateau(int lignes, int colonnes) {
+        plateau = new int[lignes][colonnes];
+        initialiseplat();
+    }
+
 }
